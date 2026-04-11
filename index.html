@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grim Harvest — PvP Гильдия</title>
+    <title>Grim Harvest — Turtle WoW PvP Guild</title>
     <!-- Шрифты -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <!-- Font Awesome для иконок -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -34,17 +34,18 @@
 
         /* Шапка */
         header {
-            padding: 30px 0 20px;
+            padding: 20px 0 20px;
             border-bottom: 2px solid #8b1e1e;
             box-shadow: 0 10px 20px -10px rgba(139, 30, 30, 0.3);
             margin-bottom: 40px;
         }
 
-        .header-content {
+        .header-top {
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
+            margin-bottom: 20px;
         }
 
         .logo-area {
@@ -98,6 +99,9 @@
             font-weight: 600;
             font-size: 1rem;
             text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .server-tag i {
@@ -105,11 +109,40 @@
             margin-right: 8px;
         }
 
-        /* Навигация */
-        nav {
-            margin-top: 30px;
+        /* Переключатель языка */
+        .lang-switch {
+            display: flex;
+            gap: 5px;
+            background: #151515;
+            padding: 4px;
+            border-radius: 30px;
+            border: 1px solid #3a3a3a;
         }
 
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: #888;
+            font-weight: bold;
+            font-size: 0.8rem;
+            padding: 5px 12px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .lang-btn.active {
+            background: #8b1e1e;
+            color: white;
+            box-shadow: 0 0 8px #c0392b;
+        }
+
+        .lang-btn:hover {
+            color: #d4af37;
+        }
+
+        /* Навигация */
         nav ul {
             display: flex;
             list-style: none;
@@ -162,7 +195,6 @@
             font-size: 1.8rem;
         }
 
-        /* Карточки */
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -202,7 +234,6 @@
             font-weight: bold;
         }
 
-        /* Список приоритетов */
         .priority-list {
             list-style: none;
             margin: 20px 0;
@@ -221,7 +252,6 @@
             width: 20px;
         }
 
-        /* Кнопка */
         .btn {
             display: inline-block;
             background: #8b1e1e;
@@ -248,7 +278,6 @@
             transform: scale(1.02);
         }
 
-        /* Контакты */
         .contact-block {
             background: #0f0d10;
             padding: 30px;
@@ -269,7 +298,6 @@
             border: 1px solid #8b1e1e;
         }
 
-        /* Футер */
         footer {
             text-align: center;
             padding: 30px 0;
@@ -279,12 +307,11 @@
             font-size: 0.9rem;
         }
 
-        /* Стили для мобильных */
         @media (max-width: 700px) {
             h1 {
                 font-size: 2.2rem;
             }
-            .header-content {
+            .header-top {
                 flex-direction: column;
                 text-align: center;
                 gap: 20px;
@@ -294,7 +321,6 @@
             }
         }
 
-        /* Имитация скриншота */
         .screenshot-placeholder {
             background: #151215;
             border: 2px solid #2c1e1e;
@@ -310,26 +336,30 @@
 <body>
     <div class="container">
         <header>
-            <div class="header-content">
+            <div class="header-top">
                 <div class="logo-area">
                     <div class="emblem">
                         <i class="fas fa-skull"></i>
                     </div>
                     <div>
                         <h1>GRIM HARVEST</h1>
-                        <div class="tagline">«Жатва скорби»</div>
+                        <div class="tagline" data-lang="tagline">Turtle WoW • Tel'Abim</div>
                     </div>
                 </div>
                 <div class="server-tag">
-                    <i class="fas fa-globe"></i> EU-RU | PvP Realm
+                    <i class="fas fa-turtle"></i> Tel'Abim (PvP)
+                    <div class="lang-switch">
+                        <button class="lang-btn active" data-lang="ru">RU</button>
+                        <button class="lang-btn" data-lang="en">EN</button>
+                    </div>
                 </div>
             </div>
             <nav>
                 <ul>
-                    <li><a href="#about" class="active"><i class="fas fa-flag"></i> О нас</a></li>
-                    <li><a href="#world-pvp"><i class="fas fa-crosshairs"></i> World PvP</a></li>
-                    <li><a href="#join"><i class="fas fa-user-plus"></i> Вступить</a></li>
-                    <li><a href="#contacts"><i class="fas fa-address-card"></i> Контакты</a></li>
+                    <li><a href="#about" class="nav-link" data-lang="nav_about">О нас</a></li>
+                    <li><a href="#world-pvp" class="nav-link" data-lang="nav_wpvp">World PvP</a></li>
+                    <li><a href="#join" class="nav-link" data-lang="nav_join">Вступить</a></li>
+                    <li><a href="#contacts" class="nav-link" data-lang="nav_contacts">Контакты</a></li>
                 </ul>
             </nav>
         </header>
@@ -338,31 +368,30 @@
         <section id="about">
             <div class="section-title">
                 <i class="fas fa-dragon"></i>
-                <span>Русский оплот на чужбине</span>
+                <span data-lang="about_title">Русскоязычное PvP сообщество</span>
             </div>
             <div class="grid-3">
                 <div class="card">
                     <div class="card-icon"><i class="fas fa-users"></i></div>
-                    <h3>Кто мы</h3>
-                    <p><span class="highlight">Grim Harvest</span> — русскоязычная PvP-гильдия на иностранном сервере. Мы объединили опытных бойцов, уставших от токсичности локальных серверов и ищущих настоящей битвы в мировом PvP.</p>
-                    <p style="margin-top: 10px;">Наш состав — это ветераны WoW, гладиаторы прошлых сезонов и просто фанаты постоянных стычек.</p>
+                    <h3 data-lang="who_title">Кто мы</h3>
+                    <p data-lang="who_desc"><span class="highlight">Grim Harvest</span> — мультиязычная PvP-гильдия на сервере Turtle WoW (Tel'Abim). Наше ядро — русскоговорящие игроки, но мы всегда рады англоговорящим союзникам. Общаемся на двух языках, ценим скилл, а не паспорт.</p>
                 </div>
                 <div class="card">
                     <div class="card-icon"><i class="fas fa-gem"></i></div>
-                    <h3>Приоритеты</h3>
+                    <h3 data-lang="prior_title">Приоритеты</h3>
                     <ul class="priority-list">
-                        <li><i class="fas fa-skull-crossbones"></i> World PvP / War Mode</li>
-                        <li><i class="fas fa-shield-halbed"></i> Арены 2v2 / 3v3 (рейтинг)</li>
-                        <li><i class="fas fa-flag-checkered"></i> Рейды на вражеские столицы</li>
-                        <li><i class="fas fa-coins"></i> Фарм чести и кровавых жетонов</li>
+                        <li><i class="fas fa-skull-crossbones"></i> <span data-lang="prior_1">World PvP / War Mode</span></li>
+                        <li><i class="fas fa-shield-halbed"></i> <span data-lang="prior_2">Арены 2v2 / 3v3 (рейтинг)</span></li>
+                        <li><i class="fas fa-flag-checkered"></i> <span data-lang="prior_3">Рейды на вражеские столицы</span></li>
+                        <li><i class="fas fa-coins"></i> <span data-lang="prior_4">Battlegrounds & PvP-ивенты</span></li>
                     </ul>
                 </div>
                 <div class="card">
                     <div class="card-icon"><i class="fas fa-clock"></i></div>
-                    <h3>Активность</h3>
-                    <p><i class="fas fa-calendar-alt" style="color:#c0392b;"></i> <strong>Прайм-тайм:</strong> 19:00 – 01:00 МСК</p>
-                    <p><i class="fas fa-users-slash"></i> <strong>Текущий состав:</strong> ~35 активных ядер</p>
-                    <p><i class="fas fa-trophy"></i> <strong>Цель сезона:</strong> Gladiator Mount &amp; контроль ключевых точек в Вальдраккене.</p>
+                    <h3 data-lang="activity_title">Активность</h3>
+                    <p><i class="fas fa-calendar-alt" style="color:#c0392b;"></i> <span data-lang="activity_time"><strong>Прайм-тайм (EU):</strong> 19:00 – 01:00 МСК / 18:00 – 00:00 CET</span></p>
+                    <p><i class="fas fa-users-slash"></i> <span data-lang="activity_core"><strong>Ядро:</strong> ~40 активных бойцов</span></p>
+                    <p><i class="fas fa-trophy"></i> <span data-lang="activity_goal"><strong>Цель:</strong> Контроль PvP-зон в Tel'Abim</span></p>
                 </div>
             </div>
         </section>
@@ -371,27 +400,26 @@
         <section id="world-pvp">
             <div class="section-title">
                 <i class="fas fa-globe-americas"></i>
-                <span>World PvP — наша стихия</span>
+                <span data-lang="wpvp_title">World PvP — стихия Grim Harvest</span>
             </div>
             <div style="display: flex; gap: 30px; flex-wrap: wrap;">
                 <div style="flex: 2; min-width: 280px;">
-                    <p style="font-size: 1.2rem; margin-bottom: 20px;">Мы не сидим в столице. <span class="highlight">Grim Harvest</span> держит в страхе локации с элитными мобами и сундуками с припасами.</p>
+                    <p style="font-size: 1.2rem; margin-bottom: 20px;" data-lang="wpvp_intro">Мы не стоим в городе. Мы патрулируем ключевые локации и защищаем наших.</p>
                     <ul class="priority-list">
-                        <li><i class="fas fa-map-pin"></i> <strong>Еженедельные рейды:</strong> Осада Оргриммара / Штормграда (в зависимости от фракции).</li>
-                        <li><i class="fas fa-map-pin"></i> <strong>Охота за головами:</strong> Списки целей на вражеских генералов и стримеров.</li>
-                        <li><i class="fas fa-map-pin"></i> <strong>Защита фермеров:</strong> Пати для защиты согильдийцев в热门ных фарм-спотах.</li>
+                        <li><i class="fas fa-map-pin"></i> <span data-lang="wpvp_1"><strong>Рейды на столицы:</strong> Еженедельные вылазки в Оргриммар / Штормград.</span></li>
+                        <li><i class="fas fa-map-pin"></i> <span data-lang="wpvp_2"><strong>Охота за головами:</strong> Лист целей на вражеских PvP-лидеров.</span></li>
+                        <li><i class="fas fa-map-pin"></i> <span data-lang="wpvp_3"><strong>Защита фарма:</strong> Патрулирование точек прокачки и фарма ресурсов.</span></li>
                     </ul>
                     <div class="screenshot-placeholder">
-                        <i class="fas fa-image" style="margin-right: 10px;"></i> [Скриншот: Битва 40x40 у Черного Рынка] <br>
-                        <small>Скоро здесь будет галерея наших побед</small>
+                        <i class="fas fa-image" style="margin-right: 10px;"></i> <span data-lang="wpvp_ss">[Скриншот: Битва за Кабестан] Скоро здесь будет галерея наших побед на Turtle WoW.</span>
                     </div>
                 </div>
                 <div style="flex: 1; background: #140e0e; padding: 20px; border-radius: 20px; border-left: 5px solid #8b1e1e;">
-                    <h3 style="font-family: 'Cinzel'; margin-bottom: 15px;"><i class="fas fa-calendar-week"></i> Расписание (СРВ)</h3>
-                    <p><strong>ПН</strong> — Арены (фан/рейтинг) <br>
-                    <strong>ВТ</strong> — Рейд на враждебную фракцию <br>
-                    <strong>СР</strong> — Вольный PvP / прокачка твинков <br>
-                    <strong>ЧТ-ВС</strong> — Зачистка точек PvP-миссий + РБГ</p>
+                    <h3 style="font-family: 'Cinzel'; margin-bottom: 15px;"><i class="fas fa-calendar-week"></i> <span data-lang="schedule_title">Расписание (EU)</span></h3>
+                    <p><strong data-lang="mon">ПН</strong> — <span data-lang="mon_act">Арены (фан/рейтинг)</span><br>
+                    <strong data-lang="tue">ВТ</strong> — <span data-lang="tue_act">World PvP Raid</span><br>
+                    <strong data-lang="wed">СР</strong> — <span data-lang="wed_act">Battlegrounds Premade</span><br>
+                    <strong data-lang="thu_sun">ЧТ-ВС</strong> — <span data-lang="thu_sun_act">Охота на врагов фракции / Фарм чести</span></p>
                 </div>
             </div>
         </section>
@@ -400,20 +428,20 @@
         <section id="join">
             <div class="section-title">
                 <i class="fas fa-door-open"></i>
-                <span>Вступить в Grim Harvest</span>
+                <span data-lang="join_title">Вступить в Grim Harvest</span>
             </div>
             <div class="card" style="max-width: 800px; margin: 0 auto;">
-                <h3><i class="fas fa-scroll"></i> Требования</h3>
+                <h3><i class="fas fa-scroll"></i> <span data-lang="req_title">Требования</span></h3>
                 <ul style="margin: 20px 0 20px 25px;">
-                    <li>Уровень персонажа: 80 (или актуальный макс. уровень).</li>
-                    <li>Наличие PvP-тринкетов и базового сета чести.</li>
-                    <li>Включенный War Mode <span style="color:#c0392b;">(обязательно)</span>.</li>
-                    <li>Дискорд + микрофон (понимание русского языка обязательно).</li>
-                    <li>Адекватность и желание драться, а не ныть.</li>
+                    <li data-lang="req_1">Уровень персонажа: 60 (актуальный кап Turtle WoW).</li>
+                    <li data-lang="req_2">Наличие PvP-тринкетов и базового PvP-сета.</li>
+                    <li data-lang="req_3">Включенный режим войны (War Mode).</li>
+                    <li data-lang="req_4">Discord + микрофон (понимание русского ИЛИ английского языка).</li>
+                    <li data-lang="req_5">Адекватность, желание драться и работать в команде.</li>
                 </ul>
-                <p>Мы не смотрим на РИО или опыт рейдов. Главное — уметь нажимать кнопки в PvP и слышать таргет-коллера.</p>
-                <a href="#" class="btn" style="margin-top: 25px;"><i class="fab fa-discord"></i> Заполнить заявку в Discord</a>
-                <p style="margin-top: 15px; font-size: 0.9rem;">* Ссылка ведет на наш Discord-сервер. После верификации вы получите тег "Новобранец".</p>
+                <p data-lang="join_text">Мы не смотрим на твой гир из рейдов. Главное — уметь нажимать кнопки в PvP и слышать таргет-коллера. В рейде коллы дублируются на двух языках.</p>
+                <a href="#" class="btn" style="margin-top: 25px;"><i class="fab fa-discord"></i> <span data-lang="join_btn">Заявка в Discord</span></a>
+                <p style="margin-top: 15px; font-size: 0.9rem;" data-lang="join_note">* Присоединяйся к нашему серверу, получишь тег "Recruit".</p>
             </div>
         </section>
 
@@ -421,19 +449,18 @@
         <section id="contacts">
             <div class="section-title">
                 <i class="fas fa-address-book"></i>
-                <span>Связаться с офицерами</span>
+                <span data-lang="contacts_title">Связаться с офицерами</span>
             </div>
             <div class="contact-block">
                 <div>
                     <h3 style="font-family: 'Cinzel'; margin-bottom: 10px;"><i class="fab fa-discord"></i> Discord: <span style="color:#d4af37;">grim-harvest</span></h3>
-                    <p><i class="fas fa-tag"></i> Приглашение: <code>discord.gg/grimharvest</code> (пример)</p>
+                    <p><i class="fas fa-tag"></i> <span data-lang="invite">Приглашение</span>: <code>discord.gg/grimharvest</code></p>
                     <div class="officer-list">
-                        <p><strong>Офицеры в игре:</strong></p>
-                        <span>Кел`Тузад (GM)</span>
-                        <span>Артасмена</span>
-                        <span>Фростморн</span>
-                        <span>Нежитька</span>
+                        <p><strong><span data-lang="officers_label">Офицеры в игре</span> (Turtle WoW):</strong></p>
+                        <span>Nkarie (GM)</span>
+                        <span>Worog</span>
                     </div>
+                    <p style="margin-top: 15px;"><i class="fas fa-comment"></i> <span data-lang="whisper">Whisper для инвайта или вопросов.</span></p>
                 </div>
                 <div style="text-align: right;">
                     <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%231a0a0a' stroke='%238b1e1e' stroke-width='4'/%3E%3Ctext x='50' y='65' font-family='Cinzel' font-size='40' fill='%23d4af37' text-anchor='middle' font-weight='bold'%3EGH%3C/text%3E%3C/svg%3E" alt="GH Logo" style="opacity: 0.8;">
@@ -442,13 +469,150 @@
         </section>
 
         <footer>
-            <p>Grim Harvest &copy; 2026. World of Warcraft и связанные изображения являются собственностью Blizzard Entertainment.</p>
-            <p style="margin-top: 15px;">Сайт-визитка для русской PvP гильдии. Сделано с <i class="fas fa-heart" style="color: #8b1e1e;"></i> на GitHub Pages.</p>
+            <p>Grim Harvest &copy; 2026. World of Warcraft © Blizzard Entertainment. Turtle WoY.</p>
+            <p style="margin-top: 15px;" data-lang="footer_text">Сайт-визитка PvP гильдии. Tel'Abim (PvP). <i class="fas fa-heart" style="color: #8b1e1e;"></i></p>
         </footer>
     </div>
 
-    <!-- Небольшая якорная плавность -->
     <script>
+        // Словари для языков
+        const translations = {
+            ru: {
+                tagline: "Turtle WoW • Tel'Abim",
+                nav_about: "О нас",
+                nav_wpvp: "World PvP",
+                nav_join: "Вступить",
+                nav_contacts: "Контакты",
+                about_title: "Русскоязычное PvP сообщество",
+                who_title: "Кто мы",
+                who_desc: "<span class='highlight'>Grim Harvest</span> — мультиязычная PvP-гильдия на сервере Turtle WoW (Tel'Abim). Наше ядро — русскоговорящие игроки, но мы всегда рады англоговорящим союзникам. Общаемся на двух языках, ценим скилл, а не паспорт.",
+                prior_title: "Приоритеты",
+                prior_1: "World PvP / War Mode",
+                prior_2: "Арены 2v2 / 3v3 (рейтинг)",
+                prior_3: "Рейды на вражеские столицы",
+                prior_4: "Battlegrounds & PvP-ивенты",
+                activity_title: "Активность",
+                activity_time: "<strong>Прайм-тайм (EU):</strong> 19:00 – 01:00 МСК / 18:00 – 00:00 CET",
+                activity_core: "<strong>Ядро:</strong> ~40 активных бойцов",
+                activity_goal: "<strong>Цель:</strong> Контроль PvP-зон в Tel'Abim",
+                wpvp_title: "World PvP — стихия Grim Harvest",
+                wpvp_intro: "Мы не стоим в городе. Мы патрулируем ключевые локации и защищаем наших.",
+                wpvp_1: "<strong>Рейды на столицы:</strong> Еженедельные вылазки в Оргриммар / Штормград.",
+                wpvp_2: "<strong>Охота за головами:</strong> Лист целей на вражеских PvP-лидеров.",
+                wpvp_3: "<strong>Защита фарма:</strong> Патрулирование точек прокачки и фарма ресурсов.",
+                wpvp_ss: "[Скриншот: Битва за Кабестан] Скоро здесь будет галерея наших побед на Turtle WoW.",
+                schedule_title: "Расписание (EU)",
+                mon: "ПН",
+                mon_act: "Арены (фан/рейтинг)",
+                tue: "ВТ",
+                tue_act: "World PvP Raid",
+                wed: "СР",
+                wed_act: "Battlegrounds Premade",
+                thu_sun: "ЧТ-ВС",
+                thu_sun_act: "Охота на врагов фракции / Фарм чести",
+                join_title: "Вступить в Grim Harvest",
+                req_title: "Требования",
+                req_1: "Уровень персонажа: 60 (актуальный кап Turtle WoW).",
+                req_2: "Наличие PvP-тринкетов и базового PvP-сета.",
+                req_3: "Включенный режим войны (War Mode).",
+                req_4: "Discord + микрофон (понимание русского ИЛИ английского языка).",
+                req_5: "Адекватность, желание драться и работать в команде.",
+                join_text: "Мы не смотрим на твой гир из рейдов. Главное — уметь нажимать кнопки в PvP и слышать таргет-коллера. В рейде коллы дублируются на двух языках.",
+                join_btn: "Заявка в Discord",
+                join_note: "* Присоединяйся к нашему серверу, получишь тег \"Recruit\".",
+                contacts_title: "Связаться с офицерами",
+                invite: "Приглашение",
+                officers_label: "Офицеры в игре",
+                whisper: "Whisper для инвайта или вопросов.",
+                footer_text: "Сайт-визитка PvP гильдии. Tel'Abim (PvP)."
+            },
+            en: {
+                tagline: "Turtle WoW • Tel'Abim",
+                nav_about: "About",
+                nav_wpvp: "World PvP",
+                nav_join: "Join",
+                nav_contacts: "Contacts",
+                about_title: "Russian-speaking PvP Community",
+                who_title: "Who We Are",
+                who_desc: "<span class='highlight'>Grim Harvest</span> is a multilingual PvP guild on Turtle WoW (Tel'Abim). Our core is Russian-speaking players, but we warmly welcome English-speaking allies. We communicate in both languages and value skill over passport.",
+                prior_title: "Priorities",
+                prior_1: "World PvP / War Mode",
+                prior_2: "Arenas 2v2 / 3v3 (rated)",
+                prior_3: "Raids on enemy capitals",
+                prior_4: "Battlegrounds & PvP Events",
+                activity_title: "Activity",
+                activity_time: "<strong>Prime-time (EU):</strong> 7:00 PM – 1:00 AM MSK / 6:00 PM – 00:00 CET",
+                activity_core: "<strong>Core:</strong> ~40 active fighters",
+                activity_goal: "<strong>Goal:</strong> Control PvP zones in Tel'Abim",
+                wpvp_title: "World PvP — Grim Harvest's Element",
+                wpvp_intro: "We don't idle in the city. We patrol key locations and protect our own.",
+                wpvp_1: "<strong>Capital Raids:</strong> Weekly incursions into Orgrimmar / Stormwind.",
+                wpvp_2: "<strong>Bounty Hunting:</strong> Target list of enemy PvP leaders.",
+                wpvp_3: "<strong>Farm Protection:</strong> Patrolling leveling and resource farming spots.",
+                wpvp_ss: "[Screenshot: Battle for the Bloodsail Hold] Gallery of our victories on Turtle WoW coming soon.",
+                schedule_title: "Schedule (EU)",
+                mon: "MON",
+                mon_act: "Arenas (fun/rated)",
+                tue: "TUE",
+                tue_act: "World PvP Raid",
+                wed: "WED",
+                wed_act: "Battlegrounds Premade",
+                thu_sun: "THU-SUN",
+                thu_sun_act: "Faction Hunting / Honor Farm",
+                join_title: "Join Grim Harvest",
+                req_title: "Requirements",
+                req_1: "Character Level: 60 (Turtle WoW current cap).",
+                req_2: "PvP trinkets and basic PvP gear.",
+                req_3: "War Mode enabled.",
+                req_4: "Discord + Microphone (understanding Russian OR English).",
+                req_5: "Adequacy, willingness to fight and teamwork.",
+                join_text: "We don't care about your raid gear. The main thing is pressing buttons in PvP and listening to the target caller. Calls are repeated in both languages during raids.",
+                join_btn: "Apply via Discord",
+                join_note: "* Join our server, you will receive the \"Recruit\" tag.",
+                contacts_title: "Contact Officers",
+                invite: "Invitation",
+                officers_label: "In-game Officers",
+                whisper: "Whisper for invite or questions.",
+                footer_text: "PvP Guild Landing Page. Tel'Abim (PvP)."
+            }
+        };
+
+        // Функция переключения языка
+        function switchLanguage(lang) {
+            // Обновляем все элементы с data-lang
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                const key = el.getAttribute('data-lang');
+                if (translations[lang] && translations[lang][key]) {
+                    // Если внутри могут быть HTML теги, используем innerHTML, иначе textContent
+                    if (translations[lang][key].includes('<')) {
+                        el.innerHTML = translations[lang][key];
+                    } else {
+                        el.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            // Обновляем активную кнопку языка
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Сохраняем выбор в localStorage
+            localStorage.setItem('grimHarvestLang', lang);
+        }
+
+        // Вешаем обработчики на кнопки
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                switchLanguage(btn.getAttribute('data-lang'));
+            });
+        });
+
+        // Плавная прокрутка
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
@@ -460,6 +624,12 @@
                     }
                 }
             });
+        });
+
+        // При загрузке проверяем сохраненный язык или ставим русский по умолчанию
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('grimHarvestLang') || 'ru';
+            switchLanguage(savedLang);
         });
     </script>
 </body>
