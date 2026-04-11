@@ -32,12 +32,22 @@
             padding: 0 20px;
         }
 
-        /* Шапка */
+        /* ===== ЛИПКИЙ ХЕДЕР ===== */
         header {
-            padding: 20px 0 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #0b0a0c;
+            background-image: radial-gradient(circle at 20% 30%, #1a1c23 0%, #020202 90%);
+            padding: 20px 0 15px;
             border-bottom: 2px solid #8b1e1e;
-            box-shadow: 0 10px 20px -10px rgba(139, 30, 30, 0.3);
+            box-shadow: 0 10px 20px -10px rgba(139, 30, 30, 0.5);
             margin-bottom: 40px;
+        }
+
+        /* Чтобы контент не уходил под хедер при якорных ссылках */
+        section {
+            scroll-margin-top: 180px;
         }
 
         .header-top {
@@ -319,6 +329,9 @@
             nav ul {
                 justify-content: center;
             }
+            section {
+                scroll-margin-top: 300px;
+            }
         }
 
         .screenshot-placeholder {
@@ -334,8 +347,8 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
+    <header>
+        <div class="container">
             <div class="header-top">
                 <div class="logo-area">
                     <div class="emblem">
@@ -362,8 +375,10 @@
                     <li><a href="#contacts" class="nav-link" data-lang="nav_contacts">Контакты</a></li>
                 </ul>
             </nav>
-        </header>
+        </div>
+    </header>
 
+    <div class="container">
         <!-- Секция О нас -->
         <section id="about">
             <div class="section-title">
@@ -381,9 +396,9 @@
                     <h3 data-lang="prior_title">Приоритеты</h3>
                     <ul class="priority-list">
                         <li><i class="fas fa-skull-crossbones"></i> <span data-lang="prior_1">World PvP / War Mode</span></li>
-                        <li><i class="fas fa-shield-halbed"></i> <span data-lang="prior_2">Арены 2v2 / 3v3 (рейтинг)</span></li>
+                        <li><i class="fas fa-shield-halved"></i> <span data-lang="prior_2">Арены 2v2 / 3v3 (рейтинг)</span></li>
                         <li><i class="fas fa-flag-checkered"></i> <span data-lang="prior_3">Рейды на вражеские столицы</span></li>
-                        <li><i class="fas fa-coins"></i> <span data-lang="prior_4">Battlegrounds & PvP-ивенты</span></li>
+                        <li><i class="fas fa-trophy"></i> <span data-lang="prior_4">Battlegrounds & PvP-ивенты</span></li>
                     </ul>
                 </div>
                 <div class="card">
@@ -391,7 +406,7 @@
                     <h3 data-lang="activity_title">Активность</h3>
                     <p><i class="fas fa-calendar-alt" style="color:#c0392b;"></i> <span data-lang="activity_time"><strong>Прайм-тайм (EU):</strong> 19:00 – 01:00 МСК / 18:00 – 00:00 CET</span></p>
                     <p><i class="fas fa-users-slash"></i> <span data-lang="activity_core"><strong>Ядро:</strong> ~40 активных бойцов</span></p>
-                    <p><i class="fas fa-trophy"></i> <span data-lang="activity_goal"><strong>Цель:</strong> Контроль PvP-зон в Tel'Abim</span></p>
+                    <p><i class="fas fa-bullseye"></i> <span data-lang="activity_goal"><strong>Цель:</strong> Контроль PvP-зон в Tel'Abim</span></p>
                 </div>
             </div>
         </section>
@@ -406,12 +421,12 @@
                 <div style="flex: 2; min-width: 280px;">
                     <p style="font-size: 1.2rem; margin-bottom: 20px;" data-lang="wpvp_intro">Мы не стоим в городе. Мы патрулируем ключевые локации и защищаем наших.</p>
                     <ul class="priority-list">
-                        <li><i class="fas fa-map-pin"></i> <span data-lang="wpvp_1"><strong>Рейды на столицы:</strong> Еженедельные вылазки в Штормград.</span></li>
-                        <li><i class="fas fa-map-pin"></i> <span data-lang="wpvp_2"><strong>Охота за головами:</strong> Лист целей на вражеских PvP-лидеров.</span></li>
-                        <li><i class="fas fa-map-pin"></i> <span data-lang="wpvp_3"><strong>Защита фарма:</strong> Патрулирование точек прокачки и фарма ресурсов.</span></li>
+                        <li><i class="fas fa-map-pin"></i> <span data-lang="wpvp_1"><strong>Рейды на столицы:</strong> Еженедельные вылазки в Оргриммар / Штормград.</span></li>
+                        <li><i class="fas fa-crosshairs"></i> <span data-lang="wpvp_2"><strong>Охота за головами:</strong> Лист целей на вражеских PvP-лидеров.</span></li>
+                        <li><i class="fas fa-shield"></i> <span data-lang="wpvp_3"><strong>Защита фарма:</strong> Патрулирование точек прокачки и фарма ресурсов.</span></li>
                     </ul>
                     <div class="screenshot-placeholder">
-                        <i class="fas fa-image" style="margin-right: 10px;"></i> <span data-lang="wpvp_ss">Скоро здесь будет галерея наших побед на Turtle WoW.</span>
+                        <i class="fas fa-image" style="margin-right: 10px;"></i> <span data-lang="wpvp_ss">[Скриншот: Битва за Кабестан] Скоро здесь будет галерея наших побед на Turtle WoW.</span>
                     </div>
                 </div>
                 <div style="flex: 1; background: #140e0e; padding: 20px; border-radius: 20px; border-left: 5px solid #8b1e1e;">
@@ -469,7 +484,7 @@
         </section>
 
         <footer>
-            <p>Grim Harvest &copy; 2026. World of Warcraft © Blizzard Entertainment. Turtle WoY.</p>
+            <p>Grim Harvest &copy; 2026. World of Warcraft © Blizzard Entertainment. Turtle WoW.</p>
             <p style="margin-top: 15px;" data-lang="footer_text">Сайт-визитка PvP гильдии. Tel'Abim (PvP). <i class="fas fa-heart" style="color: #8b1e1e;"></i></p>
         </footer>
     </div>
@@ -488,7 +503,7 @@
                 who_desc: "<span class='highlight'>Grim Harvest</span> — мультиязычная PvP-гильдия на сервере Turtle WoW (Tel'Abim). Наше ядро — русскоговорящие игроки, но мы всегда рады англоговорящим союзникам. Общаемся на двух языках, ценим скилл, а не паспорт.",
                 prior_title: "Приоритеты",
                 prior_1: "World PvP / War Mode",
-                prior_2: "Арены 2v2 / 3v3",
+                prior_2: "Арены 2v2 / 3v3 (рейтинг)",
                 prior_3: "Рейды на вражеские столицы",
                 prior_4: "Battlegrounds & PvP-ивенты",
                 activity_title: "Активность",
@@ -497,13 +512,13 @@
                 activity_goal: "<strong>Цель:</strong> Контроль PvP-зон в Tel'Abim",
                 wpvp_title: "World PvP — стихия Grim Harvest",
                 wpvp_intro: "Мы не стоим в городе. Мы патрулируем ключевые локации и защищаем наших.",
-                wpvp_1: "<strong>Рейды на столицы:</strong> Еженедельные вылазки в Штормград.",
+                wpvp_1: "<strong>Рейды на столицы:</strong> Еженедельные вылазки в Оргриммар / Штормград.",
                 wpvp_2: "<strong>Охота за головами:</strong> Лист целей на вражеских PvP-лидеров.",
                 wpvp_3: "<strong>Защита фарма:</strong> Патрулирование точек прокачки и фарма ресурсов.",
-                wpvp_ss: "Скоро здесь будет галерея наших побед на Turtle WoW.",
+                wpvp_ss: "[Скриншот: Битва за Кабестан] Скоро здесь будет галерея наших побед на Turtle WoW.",
                 schedule_title: "Расписание (EU)",
                 mon: "ПН",
-                mon_act: "Арены",
+                mon_act: "Арены (фан/рейтинг)",
                 tue: "ВТ",
                 tue_act: "World PvP Raid",
                 wed: "СР",
@@ -537,7 +552,7 @@
                 who_desc: "<span class='highlight'>Grim Harvest</span> is a multilingual PvP guild on Turtle WoW (Tel'Abim). Our core is Russian-speaking players, but we warmly welcome English-speaking allies. We communicate in both languages and value skill over passport.",
                 prior_title: "Priorities",
                 prior_1: "World PvP / War Mode",
-                prior_2: "Arenas 2v2 / 3v3",
+                prior_2: "Arenas 2v2 / 3v3 (rated)",
                 prior_3: "Raids on enemy capitals",
                 prior_4: "Battlegrounds & PvP Events",
                 activity_title: "Activity",
@@ -546,13 +561,13 @@
                 activity_goal: "<strong>Goal:</strong> Control PvP zones in Tel'Abim",
                 wpvp_title: "World PvP — Grim Harvest's Element",
                 wpvp_intro: "We don't idle in the city. We patrol key locations and protect our own.",
-                wpvp_1: "<strong>Capital Raids:</strong> Weekly incursions into Stormwind.",
+                wpvp_1: "<strong>Capital Raids:</strong> Weekly incursions into Orgrimmar / Stormwind.",
                 wpvp_2: "<strong>Bounty Hunting:</strong> Target list of enemy PvP leaders.",
                 wpvp_3: "<strong>Farm Protection:</strong> Patrolling leveling and resource farming spots.",
-                wpvp_ss: "Gallery of our victories on Turtle WoW coming soon.",
+                wpvp_ss: "[Screenshot: Battle for the Bloodsail Hold] Gallery of our victories on Turtle WoW coming soon.",
                 schedule_title: "Schedule (EU)",
                 mon: "MON",
-                mon_act: "Arenas",
+                mon_act: "Arenas (fun/rated)",
                 tue: "TUE",
                 tue_act: "World PvP Raid",
                 wed: "WED",
@@ -579,11 +594,9 @@
 
         // Функция переключения языка
         function switchLanguage(lang) {
-            // Обновляем все элементы с data-lang
             document.querySelectorAll('[data-lang]').forEach(el => {
                 const key = el.getAttribute('data-lang');
                 if (translations[lang] && translations[lang][key]) {
-                    // Если внутри могут быть HTML теги, используем innerHTML, иначе textContent
                     if (translations[lang][key].includes('<')) {
                         el.innerHTML = translations[lang][key];
                     } else {
@@ -592,7 +605,6 @@
                 }
             });
 
-            // Обновляем активную кнопку языка
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 if (btn.getAttribute('data-lang') === lang) {
                     btn.classList.add('active');
@@ -601,11 +613,9 @@
                 }
             });
 
-            // Сохраняем выбор в localStorage
             localStorage.setItem('grimHarvestLang', lang);
         }
 
-        // Вешаем обработчики на кнопки
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 switchLanguage(btn.getAttribute('data-lang'));
@@ -626,7 +636,6 @@
             });
         });
 
-        // При загрузке проверяем сохраненный язык или ставим русский по умолчанию
         document.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('grimHarvestLang') || 'ru';
             switchLanguage(savedLang);
