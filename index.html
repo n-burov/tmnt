@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grim Harvest — PvP Гильдия</title>
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0b0a0c;
+            background-image: radial-gradient(circle at 20% 30%, #1a1c23 0%, #020202 90%);
+            color: #e5e0d8;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        header {
+            padding: 30px 0 20px;
+            border-bottom: 2px solid #8b1e1e;
+            box-shadow: 0 10px 20px -10px rgba(139, 30, 30, 0.3);
+            margin-bottom: 40px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .emblem {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(145deg, #2a2a2a, #0f0f0f);
+            border: 3px solid #8b1e1e;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(139, 30, 30, 0.5);
+            transform: rotate(3deg);
+        }
+
+        .emblem i {
+            font-size: 40px;
+            color: #c0392b;
+            filter: drop-shadow(0 0 5px #e74c3c);
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-weight: 900;
+            font-size: 3rem;
+            letter-spacing: 4px;
+            color: #d4af37;
+            text-shadow: 3px 3px 0 #1a0a0a, 0 0 15px #8b1e1e;
+            margin-bottom: 5px;
+        }
+
+        .tagline {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            color: #a0a0a0;
+            text-transform: uppercase;
+        }
+
+        .server-tag {
+            background: #1e1e1e;
+            padding: 8px 18px;
+            border-radius: 30px;
+            border-left: 5px solid #8b1e1e;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        .server-tag i {
+            color: #c0392b;
+            margin-right: 8px;
+        }
+
+        /* Навигация */
+        nav {
+            margin-top: 30px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 10px 22px;
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(5px);
+            border: 1px solid #3a3a3a;
+            color: #ccc;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        nav a:hover, nav a.active {
+            background: #8b1e1e;
+            border-color: #d4af37;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(139, 30, 30, 0.7);
+        }
+
+        /* Секции */
+        section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #4a2a2a;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title i {
+            color: #8b1e1e;
+            font-size: 1.8rem;
+        }
+
+        /* Карточки */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: rgba(18, 16, 20, 0.8);
+            backdrop-filter: blur(4px);
+            border: 1px solid #2c2323;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.8);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #8b1e1e;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: #c0392b;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: #e0cda4;
+        }
+
+        .highlight {
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        /* Список приоритетов */
+        .priority-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .priority-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #2a2a2a;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .priority-list i {
+            color: #8b1e1e;
+            width: 20px;
+        }
+
+        /* Кнопка */
+        .btn {
+            display: inline-block;
+            background: #8b1e1e;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            transition: all 0.2s;
+            margin-top: 15px;
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .btn:hover {
+            background: #a52222;
+            box-shadow: 0 0 25px #c0392b;
+            transform: scale(1.02);
+        }
+
+        /* Контакты */
+        .contact-block {
+            background: #0f0d10;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid #5a2e2e;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .officer-list span {
+            display: inline-block;
+            background: #1f1a1a;
+            padding: 5px 15px;
+            margin: 5px 5px 0 0;
+            border-radius: 20px;
+            border: 1px solid #8b1e1e;
+        }
+
+        /* Футер */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            border-top: 1px solid #2a1e1e;
+            color: #7a7a7a;
+            font-size: 0.9rem;
+        }
+
+        /* Стили для мобильных */
+        @media (max-width: 700px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            nav ul {
+                justify-content: center;
+            }
+        }
+
+        /* Имитация скриншота */
+        .screenshot-placeholder {
+            background: #151215;
+            border: 2px solid #2c1e1e;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px 0;
+            color: #8b8b8b;
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo-area">
+                    <div class="emblem">
+                        <i class="fas fa-skull"></i>
+                    </div>
+                    <div>
+                        <h1>GRIM HARVEST</h1>
+                        <div class="tagline">«Жатва скорби»</div>
+                    </div>
+                </div>
+                <div class="server-tag">
+                    <i class="fas fa-globe"></i> EU-RU | PvP Realm
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about" class="active"><i class="fas fa-flag"></i> О нас</a></li>
+                    <li><a href="#world-pvp"><i class="fas fa-crosshairs"></i> World PvP</a></li>
+                    <li><a href="#join"><i class="fas fa-user-plus"></i> Вступить</a></li>
+                    <li><a href="#contacts"><i class="fas fa-address-card"></i> Контакты</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Секция О нас -->
+        <section id="about">
+            <div class="section-title">
+                <i class="fas fa-dragon"></i>
+                <span>Русский оплот на чужбине</span>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-users"></i></div>
+                    <h3>Кто мы</h3>
+                    <p><span class="highlight">Grim Harvest</span> — русскоязычная PvP-гильдия на иностранном сервере. Мы объединили опытных бойцов, уставших от токсичности локальных серверов и ищущих настоящей битвы в мировом PvP.</p>
+                    <p style="margin-top: 10px;">Наш состав — это ветераны WoW, гладиаторы прошлых сезонов и просто фанаты постоянных стычек.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-gem"></i></div>
+                    <h3>Приоритеты</h3>
+                    <ul class="priority-list">
+                        <li><i class="fas fa-skull-crossbones"></i> World PvP / War Mode</li>
+                        <li><i class="fas fa-shield-halbed"></i> Арены 2v2 / 3v3 (рейтинг)</li>
+                        <li><i class="fas fa-flag-checkered"></i> Рейды на вражеские столицы</li>
+                        <li><i class="fas fa-coins"></i> Фарм чести и кровавых жетонов</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-clock"></i></div>
+                    <h3>Активность</h3>
+                    <p><i class="fas fa-calendar-alt" style="color:#c0392b;"></i> <strong>Прайм-тайм:</strong> 19:00 – 01:00 МСК</p>
+                    <p><i class="fas fa-users-slash"></i> <strong>Текущий состав:</strong> ~35 активных ядер</p>
+                    <p><i class="fas fa-trophy"></i> <strong>Цель сезона:</strong> Gladiator Mount &amp; контроль ключевых точек в Вальдраккене.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция World PvP -->
+        <section id="world-pvp">
+            <div class="section-title">
+                <i class="fas fa-globe-americas"></i>
+                <span>World PvP — наша стихия</span>
+            </div>
+            <div style="display: flex; gap: 30px; flex-wrap: wrap;">
+                <div style="flex: 2; min-width: 280px;">
+                    <p style="font-size: 1.2rem; margin-bottom: 20px;">Мы не сидим в столице. <span class="highlight">Grim Harvest</span> держит в страхе локации с элитными мобами и сундуками с припасами.</p>
+                    <ul class="priority-list">
+                        <li><i class="fas fa-map-pin"></i> <strong>Еженедельные рейды:</strong> Осада Оргриммара / Штормграда (в зависимости от фракции).</li>
+                        <li><i class="fas fa-map-pin"></i> <strong>Охота за головами:</strong> Списки целей на вражеских генералов и стримеров.</li>
+                        <li><i class="fas fa-map-pin"></i> <strong>Защита фермеров:</strong> Пати для защиты согильдийцев в热门ных фарм-спотах.</li>
+                    </ul>
+                    <div class="screenshot-placeholder">
+                        <i class="fas fa-image" style="margin-right: 10px;"></i> [Скриншот: Битва 40x40 у Черного Рынка] <br>
+                        <small>Скоро здесь будет галерея наших побед</small>
+                    </div>
+                </div>
+                <div style="flex: 1; background: #140e0e; padding: 20px; border-radius: 20px; border-left: 5px solid #8b1e1e;">
+                    <h3 style="font-family: 'Cinzel'; margin-bottom: 15px;"><i class="fas fa-calendar-week"></i> Расписание (СРВ)</h3>
+                    <p><strong>ПН</strong> — Арены (фан/рейтинг) <br>
+                    <strong>ВТ</strong> — Рейд на враждебную фракцию <br>
+                    <strong>СР</strong> — Вольный PvP / прокачка твинков <br>
+                    <strong>ЧТ-ВС</strong> — Зачистка точек PvP-миссий + РБГ</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Вступление -->
+        <section id="join">
+            <div class="section-title">
+                <i class="fas fa-door-open"></i>
+                <span>Вступить в Grim Harvest</span>
+            </div>
+            <div class="card" style="max-width: 800px; margin: 0 auto;">
+                <h3><i class="fas fa-scroll"></i> Требования</h3>
+                <ul style="margin: 20px 0 20px 25px;">
+                    <li>Уровень персонажа: 80 (или актуальный макс. уровень).</li>
+                    <li>Наличие PvP-тринкетов и базового сета чести.</li>
+                    <li>Включенный War Mode <span style="color:#c0392b;">(обязательно)</span>.</li>
+                    <li>Дискорд + микрофон (понимание русского языка обязательно).</li>
+                    <li>Адекватность и желание драться, а не ныть.</li>
+                </ul>
+                <p>Мы не смотрим на РИО или опыт рейдов. Главное — уметь нажимать кнопки в PvP и слышать таргет-коллера.</p>
+                <a href="#" class="btn" style="margin-top: 25px;"><i class="fab fa-discord"></i> Заполнить заявку в Discord</a>
+                <p style="margin-top: 15px; font-size: 0.9rem;">* Ссылка ведет на наш Discord-сервер. После верификации вы получите тег "Новобранец".</p>
+            </div>
+        </section>
+
+        <!-- Контакты -->
+        <section id="contacts">
+            <div class="section-title">
+                <i class="fas fa-address-book"></i>
+                <span>Связаться с офицерами</span>
+            </div>
+            <div class="contact-block">
+                <div>
+                    <h3 style="font-family: 'Cinzel'; margin-bottom: 10px;"><i class="fab fa-discord"></i> Discord: <span style="color:#d4af37;">grim-harvest</span></h3>
+                    <p><i class="fas fa-tag"></i> Приглашение: <code>discord.gg/grimharvest</code> (пример)</p>
+                    <div class="officer-list">
+                        <p><strong>Офицеры в игре:</strong></p>
+                        <span>Кел`Тузад (GM)</span>
+                        <span>Артасмена</span>
+                        <span>Фростморн</span>
+                        <span>Нежитька</span>
+                    </div>
+                </div>
+                <div style="text-align: right;">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%231a0a0a' stroke='%238b1e1e' stroke-width='4'/%3E%3Ctext x='50' y='65' font-family='Cinzel' font-size='40' fill='%23d4af37' text-anchor='middle' font-weight='bold'%3EGH%3C/text%3E%3C/svg%3E" alt="GH Logo" style="opacity: 0.8;">
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Grim Harvest &copy; 2026. World of Warcraft и связанные изображения являются собственностью Blizzard Entertainment.</p>
+            <p style="margin-top: 15px;">Сайт-визитка для русской PvP гильдии. Сделано с <i class="fas fa-heart" style="color: #8b1e1e;"></i> на GitHub Pages.</p>
+        </footer>
+    </div>
+
+    <!-- Небольшая якорная плавность -->
+    <script>
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if(href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if(target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
