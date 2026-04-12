@@ -45,7 +45,6 @@
             margin-bottom: 40px;
         }
 
-        /* Чтобы контент не уходил под хедер при якорных ссылках */
         section {
             scroll-margin-top: 180px;
         }
@@ -119,7 +118,6 @@
             margin-right: 8px;
         }
 
-        /* Переключатель языка */
         .lang-switch {
             display: flex;
             gap: 5px;
@@ -152,7 +150,6 @@
             color: #d4af37;
         }
 
-        /* Навигация */
         nav ul {
             display: flex;
             list-style: none;
@@ -183,7 +180,6 @@
             box-shadow: 0 0 15px rgba(139, 30, 30, 0.7);
         }
 
-        /* Секции */
         section {
             margin-bottom: 60px;
         }
@@ -288,6 +284,102 @@
             transform: scale(1.02);
         }
 
+        /* Roadmap таймлайн */
+        .roadmap-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .roadmap-item {
+            display: flex;
+            gap: 25px;
+            position: relative;
+        }
+
+        .roadmap-marker {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 100px;
+        }
+
+        .roadmap-badge {
+            background: linear-gradient(145deg, #1a0a0a, #0f0505);
+            border: 2px solid #8b1e1e;
+            border-radius: 40px;
+            padding: 10px 20px;
+            font-weight: bold;
+            color: #d4af37;
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 0 15px rgba(139, 30, 30, 0.3);
+        }
+
+        .roadmap-status {
+            margin-top: 8px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #8b8b8b;
+        }
+
+        .roadmap-status.completed {
+            color: #27ae60;
+        }
+
+        .roadmap-status.progress {
+            color: #f39c12;
+        }
+
+        .roadmap-content {
+            background: rgba(18, 16, 20, 0.8);
+            backdrop-filter: blur(4px);
+            border: 1px solid #2c2323;
+            padding: 20px 25px;
+            border-radius: 12px;
+            flex: 1;
+            border-left: 4px solid #8b1e1e;
+        }
+
+        .roadmap-content h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: #e0cda4;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .roadmap-content h4 i {
+            color: #c0392b;
+            font-size: 1.2rem;
+        }
+
+        .roadmap-desc {
+            color: #b0b0b0;
+            margin-bottom: 12px;
+        }
+
+        .roadmap-progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #1a1212;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 12px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #8b1e1e, #c0392b);
+            border-radius: 10px;
+            width: 0%;
+        }
+
         .contact-block {
             background: #0f0d10;
             padding: 30px;
@@ -332,6 +424,13 @@
             section {
                 scroll-margin-top: 300px;
             }
+            .roadmap-item {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .roadmap-marker {
+                min-width: auto;
+            }
         }
 
         .screenshot-placeholder {
@@ -371,6 +470,7 @@
                 <ul>
                     <li><a href="#about" class="nav-link" data-lang="nav_about">О нас</a></li>
                     <li><a href="#world-pvp" class="nav-link" data-lang="nav_wpvp">World PvP</a></li>
+                    <li><a href="#roadmap" class="nav-link" data-lang="nav_roadmap">Roadmap</a></li>
                     <li><a href="#join" class="nav-link" data-lang="nav_join">Вступить</a></li>
                     <li><a href="#contacts" class="nav-link" data-lang="nav_contacts">Контакты</a></li>
                 </ul>
@@ -439,6 +539,77 @@
             </div>
         </section>
 
+        <!-- НОВАЯ СЕКЦИЯ: ROADMAP -->
+        <section id="roadmap">
+            <div class="section-title">
+                <i class="fas fa-map-signs"></i>
+                <span data-lang="roadmap_title">План развития гильдии</span>
+            </div>
+            <p style="margin-bottom: 20px; font-size: 1.1rem;" data-lang="roadmap_intro">Наш путь к доминации на Tel'Abim. Присоединяйся и пиши историю вместе с нами.</p>
+            
+            <div class="roadmap-timeline">
+                <!-- Этап 1 -->
+                <div class="roadmap-item">
+                    <div class="roadmap-marker">
+                        <div class="roadmap-badge" data-lang="roadmap_phase1_badge">ФАЗА 1</div>
+                        <div class="roadmap-status completed" data-lang="roadmap_status_completed">✓ Завершено</div>
+                    </div>
+                    <div class="roadmap-content">
+                        <h4><i class="fas fa-users-cog"></i> <span data-lang="roadmap_phase1_title">Формирование костяка</span></h4>
+                        <p class="roadmap-desc" data-lang="roadmap_phase1_desc">Сбор опытных PvP-игроков, создание офицерского состава, настройка Discord-сервера с мультиязычной структурой.</p>
+                        <div class="roadmap-progress-bar">
+                            <div class="progress-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Этап 2 -->
+                <div class="roadmap-item">
+                    <div class="roadmap-marker">
+                        <div class="roadmap-badge" data-lang="roadmap_phase2_badge">ФАЗА 2</div>
+                        <div class="roadmap-status progress" data-lang="roadmap_status_progress">⟳ В процессе</div>
+                    </div>
+                    <div class="roadmap-content">
+                        <h4><i class="fas fa-ranking-star"></i> <span data-lang="roadmap_phase2_title">Выход на арену</span></h4>
+                        <p class="roadmap-desc" data-lang="roadmap_phase2_desc">Формирование стабильных арена-команд 2v2 и 3v3. Цель — топ-50 ладдера сервера. Регулярные тренировки и разборы игр.</p>
+                        <div class="roadmap-progress-bar">
+                            <div class="progress-fill" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Этап 3 -->
+                <div class="roadmap-item">
+                    <div class="roadmap-marker">
+                        <div class="roadmap-badge" data-lang="roadmap_phase3_badge">ФАЗА 3</div>
+                        <div class="roadmap-status" data-lang="roadmap_status_planned">○ Запланировано</div>
+                    </div>
+                    <div class="roadmap-content">
+                        <h4><i class="fas fa-crown"></i> <span data-lang="roadmap_phase3_title">Массовое World PvP</span></h4>
+                        <p class="roadmap-desc" data-lang="roadmap_phase3_desc">Организация еженедельных рейдов на вражеские столицы. Контроль ключевых PvP-зон. Создание "чёрного списка" вражеских PvP-лидеров.</p>
+                        <div class="roadmap-progress-bar">
+                            <div class="progress-fill" style="width: 15%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Этап 4 -->
+                <div class="roadmap-item">
+                    <div class="roadmap-marker">
+                        <div class="roadmap-badge" data-lang="roadmap_phase4_badge">ФАЗА 4</div>
+                        <div class="roadmap-status" data-lang="roadmap_status_planned">○ Запланировано</div>
+                    </div>
+                    <div class="roadmap-content">
+                        <h4><i class="fas fa-trophy-star"></i> <span data-lang="roadmap_phase4_title">Статус элитной PvP-гильдии</span></h4>
+                        <p class="roadmap-desc" data-lang="roadmap_phase4_desc">Признание Grim Harvest как главной PvP-силы на Tel'Abim. Проведение открытых PvP-ивентов для всего сервера. Закрепление в топе ладдера.</p>
+                        <div class="roadmap-progress-bar">
+                            <div class="progress-fill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Вступление -->
         <section id="join">
             <div class="section-title">
@@ -496,6 +667,7 @@
                 tagline: "Turtle WoW • Tel'Abim",
                 nav_about: "О нас",
                 nav_wpvp: "World PvP",
+                nav_roadmap: "Roadmap",
                 nav_join: "Вступить",
                 nav_contacts: "Контакты",
                 about_title: "Русскоязычное PvP сообщество",
@@ -525,6 +697,23 @@
                 wed_act: "Battlegrounds Premade",
                 thu_sun: "ЧТ-ВС",
                 thu_sun_act: "Охота на врагов фракции / Фарм чести",
+                roadmap_title: "План развития гильдии",
+                roadmap_intro: "Наш путь к доминации на Tel'Abim. Присоединяйся и пиши историю вместе с нами.",
+                roadmap_phase1_badge: "ФАЗА 1",
+                roadmap_status_completed: "✓ Завершено",
+                roadmap_phase1_title: "Формирование костяка",
+                roadmap_phase1_desc: "Сбор опытных PvP-игроков, создание офицерского состава, настройка Discord-сервера с мультиязычной структурой.",
+                roadmap_phase2_badge: "ФАЗА 2",
+                roadmap_status_progress: "⟳ В процессе",
+                roadmap_phase2_title: "Выход на арену",
+                roadmap_phase2_desc: "Формирование стабильных арена-команд 2v2 и 3v3. Цель — топ-50 ладдера сервера. Регулярные тренировки и разборы игр.",
+                roadmap_phase3_badge: "ФАЗА 3",
+                roadmap_status_planned: "○ Запланировано",
+                roadmap_phase3_title: "Массовое World PvP",
+                roadmap_phase3_desc: "Организация еженедельных рейдов на вражеские столицы. Контроль ключевых PvP-зон. Создание \"чёрного списка\" вражеских PvP-лидеров.",
+                roadmap_phase4_badge: "ФАЗА 4",
+                roadmap_phase4_title: "Статус элитной PvP-гильдии",
+                roadmap_phase4_desc: "Признание Grim Harvest как главной PvP-силы на Tel'Abim. Проведение открытых PvP-ивентов для всего сервера. Закрепление в топе ладдера.",
                 join_title: "Вступить в Grim Harvest",
                 req_title: "Требования",
                 req_1: "Уровень персонажа: 60 (актуальный кап Turtle WoW).",
@@ -545,6 +734,7 @@
                 tagline: "Turtle WoW • Tel'Abim",
                 nav_about: "About",
                 nav_wpvp: "World PvP",
+                nav_roadmap: "Roadmap",
                 nav_join: "Join",
                 nav_contacts: "Contacts",
                 about_title: "Russian-speaking PvP Community",
@@ -574,6 +764,23 @@
                 wed_act: "Battlegrounds Premade",
                 thu_sun: "THU-SUN",
                 thu_sun_act: "Faction Hunting / Honor Farm",
+                roadmap_title: "Guild Development Roadmap",
+                roadmap_intro: "Our path to dominance on Tel'Abim. Join us and write history together.",
+                roadmap_phase1_badge: "PHASE 1",
+                roadmap_status_completed: "✓ Completed",
+                roadmap_phase1_title: "Core Formation",
+                roadmap_phase1_desc: "Gathering experienced PvP players, establishing officer corps, setting up Discord server with multilingual structure.",
+                roadmap_phase2_badge: "PHASE 2",
+                roadmap_status_progress: "⟳ In Progress",
+                roadmap_phase2_title: "Arena Push",
+                roadmap_phase2_desc: "Forming stable 2v2 and 3v3 arena teams. Goal — top 50 server ladder. Regular practice and game analysis sessions.",
+                roadmap_phase3_badge: "PHASE 3",
+                roadmap_status_planned: "○ Planned",
+                roadmap_phase3_title: "Mass World PvP",
+                roadmap_phase3_desc: "Organizing weekly raids on enemy capitals. Controlling key PvP zones. Creating a \"kill list\" of enemy PvP leaders.",
+                roadmap_phase4_badge: "PHASE 4",
+                roadmap_phase4_title: "Elite PvP Guild Status",
+                roadmap_phase4_desc: "Recognition of Grim Harvest as the premier PvP force on Tel'Abim. Hosting open PvP events for the entire server. Securing top ladder positions.",
                 join_title: "Join Grim Harvest",
                 req_title: "Requirements",
                 req_1: "Character Level: 60 (Turtle WoW current cap).",
@@ -592,7 +799,6 @@
             }
         };
 
-        // Функция переключения языка
         function switchLanguage(lang) {
             document.querySelectorAll('[data-lang]').forEach(el => {
                 const key = el.getAttribute('data-lang');
@@ -622,7 +828,6 @@
             });
         });
 
-        // Плавная прокрутка
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
