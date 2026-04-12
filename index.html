@@ -302,30 +302,34 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-width: 100px;
+            width: 140px;          /* фиксированная ширина вместо min-width */
+            flex-shrink: 0;        /* запрещаем сжатие */
         }
-
+        
         .roadmap-badge {
             background: linear-gradient(145deg, #1a0a0a, #0f0505);
             border: 2px solid #8b1e1e;
             border-radius: 40px;
-            padding: 10px 20px;
+            padding: 10px 0;        /* убираем боковые паддинги, делаем по нулям */
             font-weight: bold;
             color: #d4af37;
             font-family: 'Cinzel', serif;
             text-align: center;
-            width: 100%;
+            width: 100%;            /* растягиваем на всю ширину родителя (140px) */
             box-shadow: 0 0 15px rgba(139, 30, 30, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
-
+        
         .roadmap-status {
             margin-top: 8px;
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #8b8b8b;
+            text-align: center;
+            width: 100%;
         }
-
         .roadmap-status.completed {
             color: #27ae60;
         }
