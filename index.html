@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Lightbox2 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
     <style>
         * {
             margin: 0;
@@ -284,7 +286,7 @@
             transform: scale(1.02);
         }
 
-        /* Roadmap таймлайн */
+        /* Roadmap */
         .roadmap-timeline {
             display: flex;
             flex-direction: column;
@@ -302,25 +304,25 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 140px;          /* фиксированная ширина вместо min-width */
-            flex-shrink: 0;        /* запрещаем сжатие */
+            width: 140px;
+            flex-shrink: 0;
         }
-        
+
         .roadmap-badge {
             background: linear-gradient(145deg, #1a0a0a, #0f0505);
             border: 2px solid #8b1e1e;
             border-radius: 40px;
-            padding: 10px 0;        /* убираем боковые паддинги, делаем по нулям */
+            padding: 10px 0;
             font-weight: bold;
             color: #d4af37;
             font-family: 'Cinzel', serif;
             text-align: center;
-            width: 100%;            /* растягиваем на всю ширину родителя (140px) */
+            width: 100%;
             box-shadow: 0 0 15px rgba(139, 30, 30, 0.3);
             text-transform: uppercase;
             letter-spacing: 2px;
         }
-        
+
         .roadmap-status {
             margin-top: 8px;
             font-size: 0.8rem;
@@ -330,6 +332,7 @@
             text-align: center;
             width: 100%;
         }
+
         .roadmap-status.completed {
             color: #27ae60;
         }
@@ -384,6 +387,80 @@
             width: 0%;
         }
 
+        /* ===== ГАЛЕРЕЯ СКРИНШОТОВ ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid #2c2323;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            background: #151215;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            border-color: #8b1e1e;
+            box-shadow: 0 15px 30px -10px rgba(139, 30, 30, 0.5);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            transition: filter 0.3s;
+        }
+
+        .gallery-item:hover img {
+            filter: brightness(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(11, 10, 12, 0.95), rgba(11, 10, 12, 0.7));
+            color: #d4af37;
+            padding: 12px 10px;
+            font-size: 0.9rem;
+            text-align: center;
+            backdrop-filter: blur(4px);
+            border-top: 1px solid #8b1e1e;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .gallery-caption i {
+            margin-right: 6px;
+            color: #c0392b;
+            font-size: 0.8rem;
+        }
+
+        .gallery-note {
+            text-align: center;
+            margin-top: 20px;
+            color: #8b8b8b;
+            font-style: italic;
+            padding: 15px;
+            background: rgba(18, 16, 20, 0.5);
+            border-radius: 30px;
+            border: 1px dashed #4a2a2a;
+        }
+
+        .gallery-note i {
+            color: #c0392b;
+            margin-right: 8px;
+        }
+
         .contact-block {
             background: #0f0d10;
             padding: 30px;
@@ -433,19 +510,27 @@
                 gap: 10px;
             }
             .roadmap-marker {
-                min-width: auto;
+                width: 100%;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
             }
         }
 
-        .screenshot-placeholder {
-            background: #151215;
-            border: 2px solid #2c1e1e;
-            border-radius: 16px;
-            padding: 20px;
-            margin: 20px 0;
-            color: #8b8b8b;
-            text-align: center;
-            font-style: italic;
+        /* Lightbox кастомизация */
+        .lightbox .lb-image {
+            border-radius: 8px;
+            border: 3px solid #8b1e1e;
+        }
+
+        .lightbox .lb-data .lb-caption {
+            font-family: 'Cinzel', serif;
+            color: #d4af37;
+            font-size: 1.1rem;
+        }
+
+        .lightbox .lb-data .lb-number {
+            color: #a0a0a0;
         }
     </style>
 </head>
@@ -474,6 +559,7 @@
                 <ul>
                     <li><a href="#about" class="nav-link" data-lang="nav_about">О нас</a></li>
                     <li><a href="#world-pvp" class="nav-link" data-lang="nav_wpvp">World PvP</a></li>
+                    <li><a href="#gallery" class="nav-link" data-lang="nav_gallery">Галерея</a></li>
                     <li><a href="#roadmap" class="nav-link" data-lang="nav_roadmap">Roadmap</a></li>
                     <li><a href="#join" class="nav-link" data-lang="nav_join">Вступить</a></li>
                     <li><a href="#contacts" class="nav-link" data-lang="nav_contacts">Контакты</a></li>
@@ -529,9 +615,6 @@
                         <li><i class="fas fa-crosshairs"></i> <span data-lang="wpvp_2"><strong>Охота за головами:</strong> Лист целей на вражеских PvP-лидеров.</span></li>
                         <li><i class="fas fa-shield"></i> <span data-lang="wpvp_3"><strong>Защита фарма:</strong> Патрулирование точек прокачки и фарма ресурсов.</span></li>
                     </ul>
-                    <div class="screenshot-placeholder">
-                        <i class="fas fa-image" style="margin-right: 10px;"></i> <span data-lang="wpvp_ss">[Скриншот: Битва за Кабестан] Скоро здесь будет галерея наших побед на Turtle WoW.</span>
-                    </div>
                 </div>
                 <div style="flex: 1; background: #140e0e; padding: 20px; border-radius: 20px; border-left: 5px solid #8b1e1e;">
                     <h3 style="font-family: 'Cinzel'; margin-bottom: 15px;"><i class="fas fa-calendar-week"></i> <span data-lang="schedule_title">Расписание (EU)</span></h3>
@@ -543,7 +626,58 @@
             </div>
         </section>
 
-        <!-- НОВАЯ СЕКЦИЯ: ROADMAP -->
+        <!-- НОВАЯ СЕКЦИЯ: ГАЛЕРЕЯ СКРИНШОТОВ -->
+        <section id="gallery">
+            <div class="section-title">
+                <i class="fas fa-images"></i>
+                <span data-lang="gallery_title">Галерея Grim Harvest</span>
+            </div>
+            <p style="margin-bottom: 20px; font-size: 1.1rem;" data-lang="gallery_intro">Моменты наших побед и эпических сражений на полях Tel'Abim.</p>
+            
+            <div class="gallery-grid">
+                <!-- Скриншот 1: World PvP -->
+                <a href="img/gallery/wpvp1_full.jpg" class="gallery-item" data-lightbox="grim-harvest" data-title="Битва за Кабестан • 24.03.2026">
+                    <img src="img/gallery/wpvp1_thumb.jpg" alt="World PvP Battle" loading="lazy">
+                    <span class="gallery-caption"><i class="fas fa-map-pin"></i> <span data-lang="gallery_cap1">Кабестан • Мировое PvP</span></span>
+                </a>
+                
+                <!-- Скриншот 2: Арена -->
+                <a href="img/gallery/arena1_full.jpg" class="gallery-item" data-lightbox="grim-harvest" data-title="Арена 3v3 • Рейтинг 2150+">
+                    <img src="img/gallery/arena1_thumb.jpg" alt="Arena Match" loading="lazy">
+                    <span class="gallery-caption"><i class="fas fa-shield-halved"></i> <span data-lang="gallery_cap2">Арена 3v3 • Рейтинг 2150+</span></span>
+                </a>
+                
+                <!-- Скриншот 3: Рейд на столицу -->
+                <a href="img/gallery/raid1_full.jpg" class="gallery-item" data-lightbox="grim-harvest" data-title="Осада Оргриммара • 18.03.2026">
+                    <img src="img/gallery/raid1_thumb.jpg" alt="Capital Raid" loading="lazy">
+                    <span class="gallery-caption"><i class="fas fa-flag-checkered"></i> <span data-lang="gallery_cap3">Осада Оргриммара</span></span>
+                </a>
+                
+                <!-- Скриншот 4: Гильдийное собрание -->
+                <a href="img/gallery/guild1_full.jpg" class="gallery-item" data-lightbox="grim-harvest" data-title="Сбор гильдии • Ретрит перед сезоном">
+                    <img src="img/gallery/guild1_thumb.jpg" alt="Guild Meeting" loading="lazy">
+                    <span class="gallery-caption"><i class="fas fa-users"></i> <span data-lang="gallery_cap4">Сбор гильдии</span></span>
+                </a>
+                
+                <!-- Скриншот 5: World PvP стычка -->
+                <a href="img/gallery/wpvp2_full.jpg" class="gallery-item" data-lightbox="grim-harvest" data-title="Засада в Тернистой долине • 21.03.2026">
+                    <img src="img/gallery/wpvp2_thumb.jpg" alt="Stranglethorn Ambush" loading="lazy">
+                    <span class="gallery-caption"><i class="fas fa-skull-crossbones"></i> <span data-lang="gallery_cap5">Засада в Тернистой долине</span></span>
+                </a>
+                
+                <!-- Скриншот 6: Победа на БГ -->
+                <a href="img/gallery/bg1_full.jpg" class="gallery-item" data-lightbox="grim-harvest" data-title="Ущелье Песни Войны • Перфект 3:0">
+                    <img src="img/gallery/bg1_thumb.jpg" alt="Warsong Gulch Victory" loading="lazy">
+                    <span class="gallery-caption"><i class="fas fa-trophy"></i> <span data-lang="gallery_cap6">WSG • Перфект 3:0</span></span>
+                </a>
+            </div>
+            
+            <div class="gallery-note">
+                <i class="fas fa-camera"></i> <span data-lang="gallery_note">Больше скриншотов в нашем Discord-канале #скриншоты. Присоединяйся, чтобы увидеть все моменты!</span>
+            </div>
+        </section>
+
+        <!-- Секция Roadmap -->
         <section id="roadmap">
             <div class="section-title">
                 <i class="fas fa-map-signs"></i>
@@ -552,7 +686,6 @@
             <p style="margin-bottom: 20px; font-size: 1.1rem;" data-lang="roadmap_intro">Наш путь к доминации на Tel'Abim. Присоединяйся и пиши историю вместе с нами.</p>
             
             <div class="roadmap-timeline">
-                <!-- Этап 1 -->
                 <div class="roadmap-item">
                     <div class="roadmap-marker">
                         <div class="roadmap-badge" data-lang="roadmap_phase1_badge">ФАЗА 1</div>
@@ -561,13 +694,9 @@
                     <div class="roadmap-content">
                         <h4><i class="fas fa-users-cog"></i> <span data-lang="roadmap_phase1_title">Формирование костяка</span></h4>
                         <p class="roadmap-desc" data-lang="roadmap_phase1_desc">Сбор опытных PvP-игроков, создание офицерского состава, настройка Discord-сервера с мультиязычной структурой.</p>
-                        <div class="roadmap-progress-bar">
-                            <div class="progress-fill" style="width: 100%;"></div>
-                        </div>
+                        <div class="roadmap-progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
                     </div>
                 </div>
-
-                <!-- Этап 2 -->
                 <div class="roadmap-item">
                     <div class="roadmap-marker">
                         <div class="roadmap-badge" data-lang="roadmap_phase2_badge">ФАЗА 2</div>
@@ -576,13 +705,9 @@
                     <div class="roadmap-content">
                         <h4><i class="fas fa-ranking-star"></i> <span data-lang="roadmap_phase2_title">Выход на арену</span></h4>
                         <p class="roadmap-desc" data-lang="roadmap_phase2_desc">Формирование стабильных арена-команд 2v2 и 3v3. Цель — топ-50 ладдера сервера. Регулярные тренировки и разборы игр.</p>
-                        <div class="roadmap-progress-bar">
-                            <div class="progress-fill" style="width: 60%;"></div>
-                        </div>
+                        <div class="roadmap-progress-bar"><div class="progress-fill" style="width: 60%;"></div></div>
                     </div>
                 </div>
-
-                <!-- Этап 3 -->
                 <div class="roadmap-item">
                     <div class="roadmap-marker">
                         <div class="roadmap-badge" data-lang="roadmap_phase3_badge">ФАЗА 3</div>
@@ -591,13 +716,9 @@
                     <div class="roadmap-content">
                         <h4><i class="fas fa-crown"></i> <span data-lang="roadmap_phase3_title">Массовое World PvP</span></h4>
                         <p class="roadmap-desc" data-lang="roadmap_phase3_desc">Организация еженедельных рейдов на вражеские столицы. Контроль ключевых PvP-зон. Создание "чёрного списка" вражеских PvP-лидеров.</p>
-                        <div class="roadmap-progress-bar">
-                            <div class="progress-fill" style="width: 15%;"></div>
-                        </div>
+                        <div class="roadmap-progress-bar"><div class="progress-fill" style="width: 15%;"></div></div>
                     </div>
                 </div>
-
-                <!-- Этап 4 -->
                 <div class="roadmap-item">
                     <div class="roadmap-marker">
                         <div class="roadmap-badge" data-lang="roadmap_phase4_badge">ФАЗА 4</div>
@@ -606,9 +727,7 @@
                     <div class="roadmap-content">
                         <h4><i class="fas fa-trophy-star"></i> <span data-lang="roadmap_phase4_title">Статус элитной PvP-гильдии</span></h4>
                         <p class="roadmap-desc" data-lang="roadmap_phase4_desc">Признание Grim Harvest как главной PvP-силы на Tel'Abim. Проведение открытых PvP-ивентов для всего сервера. Закрепление в топе ладдера.</p>
-                        <div class="roadmap-progress-bar">
-                            <div class="progress-fill" style="width: 0%;"></div>
-                        </div>
+                        <div class="roadmap-progress-bar"><div class="progress-fill" style="width: 0%;"></div></div>
                     </div>
                 </div>
             </div>
@@ -664,6 +783,9 @@
         </footer>
     </div>
 
+    <!-- Lightbox2 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    
     <script>
         // Словари для языков
         const translations = {
@@ -671,6 +793,7 @@
                 tagline: "Turtle WoW • Tel'Abim",
                 nav_about: "О нас",
                 nav_wpvp: "World PvP",
+                nav_gallery: "Галерея",
                 nav_roadmap: "Roadmap",
                 nav_join: "Вступить",
                 nav_contacts: "Контакты",
@@ -691,7 +814,6 @@
                 wpvp_1: "<strong>Рейды на столицы:</strong> Еженедельные вылазки в Оргриммар / Штормград.",
                 wpvp_2: "<strong>Охота за головами:</strong> Лист целей на вражеских PvP-лидеров.",
                 wpvp_3: "<strong>Защита фарма:</strong> Патрулирование точек прокачки и фарма ресурсов.",
-                wpvp_ss: "[Скриншот: Битва за Кабестан] Скоро здесь будет галерея наших побед на Turtle WoW.",
                 schedule_title: "Расписание (EU)",
                 mon: "ПН",
                 mon_act: "Арены (фан/рейтинг)",
@@ -701,6 +823,15 @@
                 wed_act: "Battlegrounds Premade",
                 thu_sun: "ЧТ-ВС",
                 thu_sun_act: "Охота на врагов фракции / Фарм чести",
+                gallery_title: "Галерея Grim Harvest",
+                gallery_intro: "Моменты наших побед и эпических сражений на полях Tel'Abim.",
+                gallery_cap1: "Кабестан • Мировое PvP",
+                gallery_cap2: "Арена 3v3 • Рейтинг 2150+",
+                gallery_cap3: "Осада Оргриммара",
+                gallery_cap4: "Сбор гильдии",
+                gallery_cap5: "Засада в Тернистой долине",
+                gallery_cap6: "WSG • Перфект 3:0",
+                gallery_note: "Больше скриншотов в нашем Discord-канале #скриншоты. Присоединяйся, чтобы увидеть все моменты!",
                 roadmap_title: "План развития гильдии",
                 roadmap_intro: "Наш путь к доминации на Tel'Abim. Присоединяйся и пиши историю вместе с нами.",
                 roadmap_phase1_badge: "ФАЗА 1",
@@ -738,6 +869,7 @@
                 tagline: "Turtle WoW • Tel'Abim",
                 nav_about: "About",
                 nav_wpvp: "World PvP",
+                nav_gallery: "Gallery",
                 nav_roadmap: "Roadmap",
                 nav_join: "Join",
                 nav_contacts: "Contacts",
@@ -758,7 +890,6 @@
                 wpvp_1: "<strong>Capital Raids:</strong> Weekly incursions into Orgrimmar / Stormwind.",
                 wpvp_2: "<strong>Bounty Hunting:</strong> Target list of enemy PvP leaders.",
                 wpvp_3: "<strong>Farm Protection:</strong> Patrolling leveling and resource farming spots.",
-                wpvp_ss: "[Screenshot: Battle for the Bloodsail Hold] Gallery of our victories on Turtle WoW coming soon.",
                 schedule_title: "Schedule (EU)",
                 mon: "MON",
                 mon_act: "Arenas (fun/rated)",
@@ -768,6 +899,15 @@
                 wed_act: "Battlegrounds Premade",
                 thu_sun: "THU-SUN",
                 thu_sun_act: "Faction Hunting / Honor Farm",
+                gallery_title: "Grim Harvest Gallery",
+                gallery_intro: "Moments of our victories and epic battles on the fields of Tel'Abim.",
+                gallery_cap1: "Bloodsail Hold • World PvP",
+                gallery_cap2: "Arena 3v3 • Rating 2150+",
+                gallery_cap3: "Siege of Orgrimmar",
+                gallery_cap4: "Guild Gathering",
+                gallery_cap5: "Stranglethorn Ambush",
+                gallery_cap6: "WSG • Perfect 3:0",
+                gallery_note: "More screenshots in our Discord #screenshots channel. Join us to see all the action!",
                 roadmap_title: "Guild Development Roadmap",
                 roadmap_intro: "Our path to dominance on Tel'Abim. Join us and write history together.",
                 roadmap_phase1_badge: "PHASE 1",
