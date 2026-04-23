@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teenage Mutant Ninja Turtles — WoW Guild</title>
+    
+    <!-- Фавикон с черепахой 🐢 -->
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🐢%3C/text%3E%3C/svg%3E">
+    
     <!-- Шрифты с поддержкой кириллицы -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -186,7 +189,6 @@
             box-shadow: 0 0 12px rgba(107, 45, 139, 0.6);
         }
 
-        /* Остальные стили (без изменений, кроме шрифтов) */
         section {
             margin-bottom: 50px;
         }
@@ -297,6 +299,16 @@
             font-weight: bold;
             font-size: 1rem;
             color: #f1c40f;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        .bonus-timer span {
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
         }
 
         .priority-list {
@@ -675,11 +687,11 @@
                 <i class="fas fa-gift"></i>
                 <div>
                     <h3 data-lang="bonus_title">🐢 DAILY BONUS FOR ALL GUILD MEMBERS!</h3>
-                    <p data-lang="bonus_desc"><i class="fas fa-box"></i> 10-slot Bag + <i class="fas fa-coins"></i> 1 Gold</p>
+                    <p data-lang="bonus_desc"><i class='fas fa-box' style='font-size: 0.5em;'></i> 10-slot Bag + <i class='fas fa-coins' style='font-size: 0.5em;'></i> 1 Gold</p>
                 </div>
             </div>
-            <div class="bonus-timer">
-                <i class="fas fa-hourglass-half"></i> <span data-lang="bonus_note">Resets at 00:00 (Server Time)</span>
+            <div class="bonus-timer" id="promo-timer">
+                <i class="fas fa-hourglass-half"></i> <span id="countdown">--:--:--</span>
             </div>
         </div>
 
@@ -865,10 +877,10 @@
             <div class="contact-block">
                 <div>
                     <h3 style="font-family: 'Russo One', sans-serif; margin-bottom: 10px; color: #2ecc71; font-weight: 400;"><i class="fab fa-discord"></i> Discord: <span style="color:#f1c40f;">TMNT</span></h3>
-                    <p><i class="fas fa-tag"></i> <span data-lang="invite">Invitation</span>: <code>https://discord.gg/TrrG5ugyJ4</code></p>
+                    <p><i class="fas fa-tag"></i> <span data-lang="invite">Invitation</span>: <code>discord.gg/TrrG5ugyJ4</code></p>
                     <div class="officer-list">
                         <p><strong><span data-lang="officers_label">In-game Officers</span>:</strong></p>
-                        <span>Worog/Azzok (GM)</span>
+                        <span>Azzok (GM)</span>
                         <span>Deadfinger</span>
                     </div>
                     <p style="margin-top: 15px;"><i class="fas fa-comment"></i> <span data-lang="whisper">Whisper any officer for an invite!</span></p>
@@ -889,6 +901,48 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
     
     <script>
+        // Таймер обратного отсчёта до окончания промо-акции
+        function updateCountdown() {
+            // Дата окончания: 25 апреля 2026, 12:00 МСК = 09:00 UTC
+            const endDate = new Date('2026-04-25T09:00:00Z');
+            const now = new Date();
+            const diff = endDate - now;
+            
+            const countdownEl = document.getElementById('countdown');
+            const timerSpan = document.querySelector('#promo-timer span');
+            
+            if (diff <= 0) {
+                countdownEl.textContent = '00:00:00';
+                timerSpan.style.color = '#e74c3c';
+                return;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            const formatNumber = (n) => n.toString().padStart(2, '0');
+            
+            let timeString = '';
+            if (days > 0) {
+                timeString += `${days}d `;
+            }
+            timeString += `${formatNumber(hours)}:${formatNumber(minutes)}:${formatNumber(seconds)}`;
+            
+            countdownEl.textContent = timeString;
+            
+            // Меняем цвет когда осталось меньше 6 часов
+            if (diff < 6 * 60 * 60 * 1000) {
+                timerSpan.style.color = '#e74c3c';
+            } else if (diff < 24 * 60 * 60 * 1000) {
+                timerSpan.style.color = '#f39c12';
+            }
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
         const translations = {
             ru: {
                 server_name: "Новый сервер (Fresh Start)",
@@ -899,8 +953,7 @@
                 nav_join: "Вступить",
                 nav_contacts: "Контакты",
                 bonus_title: "🐢 ЕЖЕДНЕВНЫЙ БОНУС ДЛЯ ВСЕХ ЧЛЕНОВ ГИЛЬДИИ!",
-                bonus_desc: "<i class='fas fa-box' style='font-size: 0.8em;'></i> Сумка на 10 слотов + <i class='fas fa-coins' style='font-size: 0.8em;'></i> 1 золотой",
-                bonus_note: "Сброс в 00:00 (серверное время)",
+                bonus_desc: "<i class='fas fa-box' style='font-size: 0.5em;'></i> Сумка на 10 слотов + <i class='fas fa-coins' style='font-size: 0.5em;'></i> 1 золотой",
                 about_title: "🐢 Кто мы такие?",
                 stat_members: "Членов за 2 дня",
                 stat_online: "Средний онлайн",
@@ -965,8 +1018,7 @@
                 nav_join: "Join",
                 nav_contacts: "Contacts",
                 bonus_title: "🐢 DAILY BONUS FOR ALL GUILD MEMBERS!",
-                bonus_desc: "<i class='fas fa-box' style='font-size: 0.8em;'></i> 10-slot Bag + <i class='fas fa-coins' style='font-size: 0.8em;'></i> 1 Gold",
-                bonus_note: "Resets at 00:00 (Server Time)",
+                bonus_desc: "<i class='fas fa-box' style='font-size: 0.5em;'></i> 10-slot Bag + <i class='fas fa-coins' style='font-size: 0.5em;'></i> 1 Gold",
                 about_title: "🐢 Who Are We?",
                 stat_members: "Members in 2 days",
                 stat_online: "Avg Online",
