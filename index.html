@@ -687,10 +687,10 @@
                 <i class="fas fa-hand-holding-heart"></i>
                 <div>
                     <h3 data-lang="support_banner_title">🐢 GUILD SUPPORT PROGRAM</h3>
-                    <p data-lang="support_banner_desc">
-                        <i class="fas fa-tools" style="font-size: 0.8em;"></i> Бесплатный ремонт 1g/день &nbsp;|&nbsp;
-                        <i class="fas fa-box-open" style="font-size: 0.8em;"></i> Сумки от щедрых донаторов &nbsp;|&nbsp;
-                        <i class="fas fa-trophy" style="font-size: 0.8em;"></i> Еженедельные розыгрыши золота
+                    <p>
+                        <span data-lang="support_icon1"></span> <span data-lang="support_text1">Free Repairs 1g/day</span> &nbsp;|&nbsp;
+                        <span data-lang="support_icon2"></span> <span data-lang="support_text2">Donated Bags</span> &nbsp;|&nbsp;
+                        <span data-lang="support_icon3"></span> <span data-lang="support_text3">Weekly Gold Giveaways</span>
                     </p>
                 </div>
             </div>
@@ -953,10 +953,13 @@
                 nav_gallery: "Галерея",
                 nav_join: "Вступить",
                 nav_contacts: "Контакты",
-                bonus_title: "🐢 ЕЖЕДНЕВНЫЙ БОНУС ДЛЯ ВСЕХ ЧЛЕНОВ ГИЛЬДИИ!",
-                bonus_desc: "<i class='fas fa-box' style='font-size: 0.8em;'></i> Сумка на 10 слотов + <i class='fas fa-coins' style='font-size: 0.8em;'></i> 1 золотой",
                 support_banner_title: "🐢 ПРОГРАММА ПОДДЕРЖКИ ГИЛЬДИИ",
-                support_banner_desc: "<i class='fas fa-tools' style='font-size: 0.8em;'></i> Бесплатный ремонт 1g/день &nbsp;|&nbsp; <i class='fas fa-box-open' style='font-size: 0.8em;'></i> Сумки от донаторов &nbsp;|&nbsp; <i class='fas fa-trophy' style='font-size: 0.8em;'></i> Еженедельные розыгрыши",
+                support_icon1: "<i class='fas fa-tools' style='font-size: 0.8em; color: #f1c40f;'></i>",
+                support_text1: "Бесплатный ремонт 1g/день",
+                support_icon2: "<i class='fas fa-box-open' style='font-size: 0.8em; color: #f1c40f;'></i>",
+                support_text2: "Сумки от донаторов",
+                support_icon3: "<i class='fas fa-trophy' style='font-size: 0.8em; color: #f1c40f;'></i>",
+                support_text3: "Еженедельные розыгрыши золота",
                 about_title: "🐢 Кто мы такие?",
                 stat_members: "Всего участников",
                 stat_online: "Средний онлайн",
@@ -965,8 +968,8 @@
                 who_desc: "<span class='highlight'>&lt;TMNT&gt;</span> — мы те самые черепахи с Turtle WoW, которые перебрались на новый сервер. Мы сохранили наш дух, наш юмор и наше мастерство. Присоединяйся к легендарной банде!",
                 support_title: "Гильдейский банк",
                 support_1: "Гильдбанк с первого дня",
-                support_2: "Ежедневная сумка 10 слотов",
-                support_3: "1 золотой на ремонт/расходники",
+                support_2: "Сумки от донаторов",
+                support_3: "Бесплатный ремонт 1g/день",
                 focus_title: "Фокус гильдии",
                 focus_1: "Прокачка и PvP по пути",
                 focus_2: "Совместные данжи",
@@ -1020,10 +1023,13 @@
                 nav_gallery: "Gallery",
                 nav_join: "Join",
                 nav_contacts: "Contacts",
-                bonus_title: "🐢 DAILY BONUS FOR ALL GUILD MEMBERS!",
-                bonus_desc: "<i class='fas fa-box' style='font-size: 0.8em;'></i> 10-slot Bag + <i class='fas fa-coins' style='font-size: 0.8em;'></i> 1 Gold",
                 support_banner_title: "🐢 GUILD SUPPORT PROGRAM",
-                support_banner_desc: "<i class='fas fa-tools' style='font-size: 0.8em;'></i> Free Repairs 1g/day &nbsp;|&nbsp; <i class='fas fa-box-open' style='font-size: 0.8em;'></i> Donated Bags &nbsp;|&nbsp; <i class='fas fa-trophy' style='font-size: 0.8em;'></i> Weekly Gold Giveaways",
+                support_icon1: "<i class='fas fa-tools' style='font-size: 0.8em; color: #f1c40f;'></i>",
+                support_text1: "Free Repairs 1g/day",
+                support_icon2: "<i class='fas fa-box-open' style='font-size: 0.8em; color: #f1c40f;'></i>",
+                support_text2: "Donated Bags",
+                support_icon3: "<i class='fas fa-trophy' style='font-size: 0.8em; color: #f1c40f;'></i>",
+                support_text3: "Weekly Gold Giveaways",
                 about_title: "🐢 Who Are We?",
                 stat_members: "Total Members",
                 stat_online: "Avg Online",
@@ -1032,8 +1038,8 @@
                 who_desc: "<span class='highlight'>&lt;TMNT&gt;</span> — we're those turtles from Turtle WoW who moved to a new server. We kept our spirit, our humor, and our skills. Join the legendary crew!",
                 support_title: "Guild Bank",
                 support_1: "Guild Bank from Day 1",
-                support_2: "Daily 10-slot Bag",
-                support_3: "1 Gold for repairs/supplies",
+                support_2: "Donated Bags",
+                support_3: "Free Repairs 1g/day",
                 focus_title: "Guild Focus",
                 focus_1: "Leveling & World PvP",
                 focus_2: "Dungeon Runs",
@@ -1085,14 +1091,15 @@
             document.querySelectorAll('[data-lang]').forEach(el => {
                 const key = el.getAttribute('data-lang');
                 if (translations[lang] && translations[lang][key]) {
-                    if (translations[lang][key].includes('<')) {
-                        el.innerHTML = translations[lang][key];
+                    const value = translations[lang][key];
+                    if (value.includes('<')) {
+                        el.innerHTML = value;
                     } else {
-                        el.textContent = translations[lang][key];
+                        el.textContent = value;
                     }
                 }
             });
-
+        
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 if (btn.getAttribute('data-lang') === lang) {
                     btn.classList.add('active');
@@ -1100,7 +1107,7 @@
                     btn.classList.remove('active');
                 }
             });
-
+        
             localStorage.setItem('tmntLang', lang);
         }
 
