@@ -270,7 +270,10 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            flex: 1;
+            justify-content: center;
         }
+        
 
         .bonus-text i {
             font-size: 2.5rem;
@@ -290,6 +293,7 @@
             font-size: 1rem;
             font-weight: 600;
             color: #2ecc71;
+            text-align: center;
         }
 
         .bonus-timer {
@@ -688,8 +692,10 @@
                 <div>
                     <h3 data-lang="support_banner_title">🐢 GUILD SUPPORT PROGRAM</h3>
                     <p>
-                        <span data-lang="support_icon1"></span> <span data-lang="support_text1">Free Repairs 1g/day</span> &nbsp;|&nbsp;
-                        <span data-lang="support_icon2"></span> <span data-lang="support_text2">Donated Bags</span> &nbsp;|&nbsp;
+                        <span data-lang="support_icon1"></span> <span data-lang="support_text1">Free Repairs 1g/day</span>
+                        &nbsp;|&nbsp;
+                        <span data-lang="support_icon2"></span> <span data-lang="support_text2">Donated Bags</span>
+                        &nbsp;|&nbsp;
                         <span data-lang="support_icon3"></span> <span data-lang="support_text3">Weekly Gold Giveaways</span>
                     </p>
                 </div>
@@ -729,8 +735,8 @@
                     <h3 data-lang="support_title">Guild Bank</h3>
                     <ul class="priority-list">
                         <li><i class="fas fa-check-circle" style="color:#2ecc71;"></i> <span data-lang="support_1">Guild Bank from Day 1</span></li>
-                        <li><i class="fas fa-check-circle" style="color:#2ecc71;"></i> <span data-lang="support_2">Daily 10-slot Bag</span></li>
-                        <li><i class="fas fa-check-circle" style="color:#2ecc71;"></i> <span data-lang="support_3">1 Gold for repairs/supplies</span></li>
+                        <li><i class="fas fa-check-circle" style="color:#2ecc71;"></i> <span data-lang="support_2">Donated Bags</span></li>
+                        <li><i class="fas fa-check-circle" style="color:#2ecc71;"></i> <span data-lang="support_3">Free Repairs 1g/day</span></li>
                     </ul>
                 </div>
                 <div class="card">
@@ -1092,7 +1098,8 @@
                 const key = el.getAttribute('data-lang');
                 if (translations[lang] && translations[lang][key]) {
                     const value = translations[lang][key];
-                    if (value.includes('<')) {
+                    // Если значение содержит HTML-теги — используем innerHTML
+                    if (value.startsWith('<')) {
                         el.innerHTML = value;
                     } else {
                         el.textContent = value;
@@ -1100,6 +1107,7 @@
                 }
             });
         
+            // Обновляем активную кнопку
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 if (btn.getAttribute('data-lang') === lang) {
                     btn.classList.add('active');
